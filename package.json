@@ -1,0 +1,20 @@
+{
+  "name": "api-petshop",
+  "version": "1.0.0",
+  "description": "api de cadastro de cachorros",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "test": "jest --coverage"
+  },
+  "author": "Victor Ezaki",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
