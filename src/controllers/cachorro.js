@@ -12,10 +12,21 @@ class ControllerCachorro {
         }
     }
 
+    async GetCachorrosByDono (req, res) {
+        try {
+            const idPessoa = req.params.idPessoa
+            const cachorros = await serviceCachorro.GetCachorrosByDono(idPessoa)
+    
+            res.status(200).send({ cachorros: cachorros })
+        } catch (e) {
+            res.status(500).send({ msg: e.message })
+        }
+    }
+
     async CreateCachorros (req, res) {
         try {
-            const { nome, raca, peso } = req.body
-            const cachorro = await serviceCachorro.CreateCachorro(nome, raca, peso)
+            const { nome, raca, peso, idPessoa } = req.body
+            const cachorro = await serviceCachorro.CreateCachorro(nome, raca, peso, idPessoa)
     
             res.status(201).send({ cachorros: cachorro })
         } catch (e) {

@@ -1,10 +1,11 @@
 const express = require('express')
-const router = require('./src/routes/cachorro')
+const routerCachorro = require('./src/routes/cachorro')
+const routerPessoa = require('./src/routes/pessoa')
 const database = require('./src/config/database')
 
 const app = express()
 app.use(express.json())
-app.use(router)
+app.use(routerCachorro, routerPessoa)
 
 const PORT = 3000
 
