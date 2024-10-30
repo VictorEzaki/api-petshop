@@ -1,4 +1,5 @@
 const database = require('./../config/database')
+const pessoa = require('./pessoa')
 
 class ModelCachorro{
     constructor() {
@@ -20,6 +21,11 @@ class ModelCachorro{
             peso: {
                 type: database.db.Sequelize.DECIMAL
             }
+        })
+
+        this.model.belongsTo(pessoa, {
+            constraints: true,
+            foreignKey: 'idPessoa'
         })
     }
 }

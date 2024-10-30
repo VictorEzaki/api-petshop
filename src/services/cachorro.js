@@ -1,3 +1,4 @@
+const pessoa = require('./pessoa')
 const modelCachorro = require('./../models/cachorro')
 
 class ServiceCachorro {
@@ -6,11 +7,16 @@ class ServiceCachorro {
         return modelCachorro.findAll()
     }
 
-    async CreateCachorro(nome, raca, peso) {
+    async GetCachorrosByDono(idPessoa){
+        return modelCachorro.findByPk(idPessoa)
+    }
+
+    async CreateCachorro(nome, raca, peso, idPessoa) {
         return modelCachorro.create({
             nome: nome,
             raca: raca,
-            peso: peso
+            peso: peso,
+            idPessoa: idPessoa
         })
     }
 
