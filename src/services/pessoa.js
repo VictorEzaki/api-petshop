@@ -7,6 +7,9 @@ class ServicePessoa {
     }
 
     async CreatePessoa(nome, idade) {
+        if (!nome || !idade) {
+            throw new Error('Preencha todos os campos!')
+        }
         return modelPessoa.create({
             nome: nome,
             idade: idade
@@ -14,23 +17,29 @@ class ServicePessoa {
     }
 
     async UpdatePessoa(id, nome, idade) {
-        return modelPessoa.update({
-            nome: nome,
-            idade: idade
-        }, 
-        {   
-            where: {
-                id: id
-            }
-        })
+        if (!id) {
+            throw new Error('Informe um ID!')
+        }
+        const pessoa = await modelPessoa.findByPk(id)
+        if (!pessoa) {
+            throw new Error('pessoa não encontrado!')
+        }
+        pessoa.nome = nome || pessoa.nome
+        pessoa.idade = idade || pessoa.idade
+
+        pessoa.save()
+        return pessoa
     }
 
     async DeletePessoa(id) {
-        return modelPessoa.destroy({
-            where: {
-                id: id
-            }
-        })
+        if (!id) {
+            throw new Error('Informe um ID!')
+        }
+        const pessoa = await modelPessoa.findByPk(id)
+        if (!pessoa) {
+            throw new Error('pessoa não encontrado!')
+        }
+        return pessoa.destroy()
     }
 
 }

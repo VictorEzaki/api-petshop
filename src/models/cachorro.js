@@ -20,13 +20,24 @@ class ModelCachorro{
 
             peso: {
                 type: database.db.Sequelize.DECIMAL
+            },
+
+            idPessoa: {
+                type: database.db.Sequelize.INTEGER,
+                references: {
+                    model: pessoa,
+                    key: 'id'
+                }
             }
         })
 
         this.model.belongsTo(pessoa, {
-            constraints: true,
             foreignKey: 'idPessoa'
         })
+        pessoa.hasMany(this.model, {
+            foreignKey: 'idPessoa'
+        })
+
     }
 }
 

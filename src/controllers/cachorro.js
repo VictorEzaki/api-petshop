@@ -36,9 +36,9 @@ class ControllerCachorro {
 
     async UpdateCachorros (req, res) {
         try {
-            const { id } = req.params
-            const { nome, raca, peso } = req.body
-            const cachorro = await serviceCachorro.UpdateCachorro(id, nome, raca, peso)
+            const id = req.params.id
+            const { nome, raca, peso, idPessoa } = req.body
+            const cachorro = await serviceCachorro.UpdateCachorro(id, nome, raca, peso, idPessoa)
     
             res.status(200).send({ cachorros: cachorro })
         } catch (e) {
@@ -48,12 +48,13 @@ class ControllerCachorro {
 
     async DeleteCachorros (req, res) {
         try {
-            const { id } = req.params
-            const cachorro = await serviceCachorro.DeleteCachorro(id)
+            const id = req.params.id
+            await serviceCachorro.DeleteCachorro(id)
+            // Não é recomendado ter um retorno 
     
-            res.status(200).send({ cachorros: cachorro })
+            res.status(204).send()
         } catch (e) {
-            res.status(500).send({ msg: e.message })
+            res.status(404).send({ msg: e.message })
         }
     }
 
