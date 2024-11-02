@@ -15,6 +15,10 @@ class ModelPessoa {
 
             idade: {
                 type: database.db.Sequelize.INTEGER
+            },
+
+            senha: {
+                type: database.db.Sequelize.STRING
             }
         })
     }
