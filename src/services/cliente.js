@@ -1,4 +1,4 @@
-const modelPessoa = require('./../models/pessoa')
+const modelPessoa = require('../models/cliente')
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 const jwt = require('jsonwebtoken')
@@ -9,19 +9,21 @@ class ServicePessoa {
         return modelPessoa.findAll()
     }
 
-    async CreatePessoa(nome, idade, senha) {
-        if (!nome || !idade || !senha) {
+    async CreatePessoa(nome, idade, senha, telefone) {
+        if (!nome || !idade || !senha || !telefone) {
             throw new Error('Preencha todos os campos!')
         }
         const hashSenha = await bcrypt.hash(senha, saltRounds)
         return modelPessoa.create({
             nome: nome,
             idade: idade,
-            senha: hashSenha
+            senha: hashSenha,
+            telefone: telefone,
+            permissao: 1
         })
     }
 
-    async UpdatePessoa(id, nome, idade, senha) {
+    async UpdatePessoa(id, nome, idade, senha, telefone) {
         if (!id) {
             throw new Error('Informe um ID!')
         }
@@ -34,6 +36,7 @@ class ServicePessoa {
         pessoa.senha = senha
             ? await bcrypt.hash(senha, saltRounds)
             : pessoa.senha
+        pessoa.telefone = telefone || pessoa.telefone
 
         pessoa.save()
         return pessoa

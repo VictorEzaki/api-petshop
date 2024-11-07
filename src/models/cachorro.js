@@ -1,5 +1,5 @@
 const database = require('./../config/database')
-const pessoa = require('./pessoa')
+const pessoa = require('./cliente')
 
 class ModelCachorro{
     constructor() {

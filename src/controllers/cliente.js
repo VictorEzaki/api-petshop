@@ -1,4 +1,4 @@
-const servicePessoa = require('./../services/pessoa')
+const servicePessoa = require('../services/cliente')
 
 class ControllerPessoa {
 
@@ -13,9 +13,9 @@ class ControllerPessoa {
 
     async CreatePessoa(req, res) {
         try {
-            const { nome, idade, senha } = req.body
+            const { nome, idade, senha, telefone } = req.body
             // Store hash in your password DB.
-            const pessoa = await servicePessoa.CreatePessoa(nome, idade, senha)
+            const pessoa = await servicePessoa.CreatePessoa(nome, idade, senha, telefone)
             res.status(201).send({ Pessoas: pessoa })
 
         } catch (e) {
@@ -26,8 +26,8 @@ class ControllerPessoa {
     async UpdatePessoa(req, res) {
         try {
             const id = req.params.id
-            const { nome, idade, senha } = req.body
-            const pessoa = await servicePessoa.UpdatePessoa(id, nome, idade, senha)
+            const { nome, idade, senha, telefone } = req.body
+            const pessoa = await servicePessoa.UpdatePessoa(id, nome, idade, senha, telefone)
 
             res.status(200).send({ Pessoas: pessoa })
         } catch (e) {

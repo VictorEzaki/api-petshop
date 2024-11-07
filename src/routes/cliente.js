@@ -1,6 +1,6 @@
 const express = require('express')
 const auth = require('../middleware/auth')
-const controllerPessoa = require('./../controllers/pessoa')
+const controllerPessoa = require('../controllers/cliente')
 const router = express.Router()
 
 router.post('/pessoa', controllerPessoa.CreatePessoa)

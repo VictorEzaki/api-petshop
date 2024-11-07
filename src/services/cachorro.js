@@ -1,4 +1,4 @@
-const pessoa = require('./../models/pessoa')
+const pessoa = require('../models/cliente')
 const modelCachorro = require('./../models/cachorro')
 
 class ServiceCachorro {
