@@ -1,8 +1,9 @@
 const database = require('../config/database')
+const usuario = require('./usuario')
 
 class ModelPessoa {
     constructor() {
-        this.model = database.db.define('pessoas', {
+        this.model = database.db.define('clientes', {
             id: {
                 type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
@@ -13,12 +14,8 @@ class ModelPessoa {
                 type: database.db.Sequelize.STRING
             },
 
-            idade: {
-                type: database.db.Sequelize.INTEGER
-            },
-
-            senha: {
-                type: database.db.Sequelize.STRING
+            dtNasc: {
+                type: database.db.Sequelize.DATE
             },
 
             telefone: {
@@ -26,9 +23,17 @@ class ModelPessoa {
                 unique: true
             },
 
-            permissao: {
-                type: database.db.Sequelize.INTEGER
+            idUsuario: {
+                type: database.db.Sequelize.INTEGER,
+                references: {
+                    model: usuario,
+                    key: 'id'
+                }
             }
+        })
+
+        this.model.belongsTo(usuario, {
+            foreignKey: 'idUsuario'
         })
     }
 }

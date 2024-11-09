@@ -1,12 +1,16 @@
 const express = require('express')
-const routerCachorro = require('./src/routes/cachorro')
-const routerPessoa = require('./src/routes/cliente')
-const routerFuncionario = require('./src/routes/funcionario')
 const database = require('./src/config/database')
+const routerCachorro = require('./src/routes/cachorro')
+const routerCliente = require('./src/routes/cliente')
+const routerFuncionario = require('./src/routes/funcionario')
+const userRoute = require('./src/routes/usuario')
+// const auth = require('./src/middleware/auth')
 
 const app = express()
 app.use(express.json())
-app.use(routerCachorro, routerPessoa, routerFuncionario)
+app.use('cachorro', routerCachorro)
+app.use(routerCliente, routerFuncionario)
+app.use(userRoute)
 
 const PORT = 3000
 

@@ -1,4 +1,5 @@
 const database = require('./../config/database')
+const usuario = require('./usuario')
 
 class ModelFuncionario{
     constructor() {
@@ -13,8 +14,8 @@ class ModelFuncionario{
                 type: database.db.Sequelize.STRING
             },
 
-            senha: {
-                type: database.db.Sequelize.STRING
+            dtNasc: {
+                type: database.db.Sequelize.DATE
             },
 
             telefone: {
@@ -22,9 +23,21 @@ class ModelFuncionario{
                 unique: true
             },
 
-            permissao: {
-                type: database.db.Sequelize.INTEGER
+            cargo: {
+                type: database.db.Sequelize.STRING
+            },
+
+            idUsuario: {
+                type: database.db.Sequelize.INTEGER,
+                references: {
+                    model: usuario,
+                    key: 'id'
+                }
             }
+        })
+
+        this.model.belongsTo(usuario, {
+            foreignKey: 'idUsuario'
         })
     }
 }

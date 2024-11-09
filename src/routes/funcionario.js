@@ -7,6 +7,6 @@ router.post('/funcionario', ControllerFuncionario.CreateFuncionario)
 router.get('/funcionario', auth, ControllerFuncionario.Getfuncionarios)
 router.put('/funcionario:id', auth, ControllerFuncionario.UpdateFuncionario)
 router.delete('/funcionario:id', auth, ControllerFuncionario.DeleteFuncionario)
-router.post('/funcionario/login', ControllerFuncionario.Login)
+router.post('/login', ControllerFuncionario.Login)
 
 module.exports = router
