@@ -9,17 +9,16 @@ class ServicePessoa {
         return modelPessoa.findAll()
     }
 
-    async CreatePessoa(nome, idade, senha, telefone) {
-        if (!nome || !idade || !senha || !telefone) {
+    async CreatePessoa(nome, dtNasc, telefone, idUsuario) {
+        if (!nome || !dtNasc || !telefone) {
             throw new Error('Preencha todos os campos!')
         }
-        const hashSenha = await bcrypt.hash(senha, saltRounds)
+
         return modelPessoa.create({
             nome: nome,
-            idade: idade,
-            senha: hashSenha,
+            dtNasc: dtNasc,
             telefone: telefone,
-            permissao: 1
+            idUsuario: idUsuario
         })
     }
 

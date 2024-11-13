@@ -13,9 +13,10 @@ class ControllerPessoa {
 
     async CreatePessoa(req, res) {
         try {
-            const { nome, idade, senha, telefone } = req.body
+            const { idUsuario } = req.params
+            const { nome, dtNasc, telefone } = req.body
             // Store hash in your password DB.
-            const pessoa = await servicePessoa.CreatePessoa(nome, idade, senha, telefone)
+            const pessoa = await servicePessoa.CreatePessoa(nome, dtNasc, telefone, idUsuario)
             res.status(201).send({ Pessoas: pessoa })
 
         } catch (e) {
